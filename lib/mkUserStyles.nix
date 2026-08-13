@@ -101,7 +101,7 @@ pkgs.stdenvNoCC.mkDerivation {
     for style in ${userStylesStr}; do
       file="${catppuccin-userstyles}/styles/$style/catppuccin.user.less"
       if [ -f "$file" ]; then
-        (cat "${catppuccin-userstyles}/lib/lib.less"; cat "$file" | sed '\|@import "https://userstyles.catppuccin.com/lib/lib.less";|d'; echo ${lib.strings.escapeShellArg (lessVarDecl lessVars "")}) | \
+        (cat "${catppuccin-userstyles}/lib/std/v1.less"; cat "$file" | sed '\|@import "https://userstyles.catppuccin.com/|d'; echo ${lib.strings.escapeShellArg (lessVarDecl lessVars "")}) | \
           lessc --source-map-no-annotation --clean-css="-b --s0 --skip-rebase --skip-advanced --skip-aggressive-merging --skip-shorthand-compacting" - >> catppuccin.userstyles.css
       fi
     done
